@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>生年月日</th>
+      <th>生まれから何日？</th>
+      <th>年齢</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.birthday %></td>
+        <td><%= "#{(Date.today - user.birthday).numerator.to_s(:delimited)}日です"%></td>
+        <td><%= "#{Date.today.year - user.birthday.year}歳になります"%></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>西暦</th>
+      <th>誰が？</th>
+      <th>何歳？</th>
+      <th>記念</th>
+      <th>みんな合わせて</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @memorials %>
+    <% @years.each do |year| %>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= year %></td>
+          <td><%= user.name %></td>
+          <% @age = year - user.birthday.year  %>
+          <td><%= "#{@age}歳になります" if @age > 0 %></td>
+          <td><%= "#{@age}歳になります" if @memorials.include?(@age)%></td>
+        </tr>
+      <% end %>
+    <%= @age += @age if @age > 0 %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

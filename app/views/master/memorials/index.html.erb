@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Master Memorials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_memorials.each do |master_memorial| %>
+      <tr>
+        <td><%= master_memorial.name %></td>
+        <td><%= master_memorial.age %></td>
+        <td><%= master_memorial.message %></td>
+        <td><%= link_to 'Show', master_memorial %></td>
+        <td><%= link_to 'Edit', edit_master_memorial_path(master_memorial) %></td>
+        <td><%= link_to 'Destroy', master_memorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Memorial', new_master_memorial_path %>

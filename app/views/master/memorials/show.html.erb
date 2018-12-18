@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @master_memorial.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @master_memorial.age %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @master_memorial.message %>
+</p>
+
+<%= link_to 'Edit', edit_master_memorial_path(@master_memorial) %> |
+<%= link_to 'Back', master_memorials_path %>
